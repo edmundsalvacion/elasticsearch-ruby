@@ -4,7 +4,7 @@ module ElasticSearch
 
     def initialize(options)
       @body = options[:body].eql?("") ? "{}" : options[:body]
-      @status = options[:status]
+      @status = options[:status].to_i
 
       case @status
       when 200..206

@@ -21,7 +21,6 @@ Gem::Specification.new do |s|
   # = Library dependencies
   #
   s.add_dependency 'thrift'
-  s.add_dependency 'faraday'
   s.add_dependency 'activesupport', ">= 3.0.0"
   s.add_development_dependency "rake"
   s.add_development_dependency "minitest"
