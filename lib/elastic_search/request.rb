@@ -27,7 +27,7 @@ module ElasticSearch
       components = [@index, @type]
       components << @id if @id
       components << "_#{@action.to_s}" if @action
-      components.compact.join("/")
+      components.compact.join("/").prepend("/")
     end
   end
 end
