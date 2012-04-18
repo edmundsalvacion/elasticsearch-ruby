@@ -13,7 +13,7 @@ module ElasticSearch
     end
     alias :[] :get_type
 
-    def search(body, parameters)
+    def search(body, parameters = {})
       request = build_request(method: :get, action: :search, parameters: parameters, body: body || {})
       response = execute(request)
       ElasticSearch::Search::Results.new(response)
