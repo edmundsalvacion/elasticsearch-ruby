@@ -48,6 +48,17 @@ describe ElasticSearch::Client do
           client.has_index?(TEST_INDEX).must_equal true
         end
       end
+
+      describe :bulk do
+        it "should bulk insert documents" do
+          client.create_index(TEST_INDEX).refresh
+          objects = (1..2).collect do |i|
+            ["{ \"index\" : { \"_index\" : \"#{TEST_INDEX}\", \"_type\" : \"#{TEST_TYPE}\", \"_id\" : \"#{i}\" } }", "{ \"foo\" : \"bar\"}"]
+          end
+          client.bulk(objects)
+        end
+      end
+
     end
   end
 end

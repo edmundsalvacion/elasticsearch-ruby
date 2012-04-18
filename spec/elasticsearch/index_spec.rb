@@ -45,6 +45,13 @@ describe ElasticSearch::Index do
           results = index.search(nil, q: '*')
           results[0].type.must_equal 'type_1'
         end
+
+        it "should search using the body" do
+          index[TEST_TYPE].put(1, { foo: 'bar' })
+          index.refresh
+          results = index.search({ query: { query_string: { query: '*' } } })
+          results.count.must_equal 1
+        end
       end
 
       describe :refresh do

@@ -20,7 +20,7 @@ module ElasticSearch
     end
 
     def body
-      @encoded_body ||= @body.to_json
+      @encoded_body ||= @body.is_a?(String) ? @body : @body.to_json
     end
 
     def path
