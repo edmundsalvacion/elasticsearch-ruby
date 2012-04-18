@@ -43,9 +43,13 @@ describe ElasticSearch::Client do
       end
 
       describe :has_index? do
-        it "should know if an index exists" do
+        it "should return true if an index exists" do
           client.create_index(TEST_INDEX).refresh
           client.has_index?(TEST_INDEX).must_equal true
+        end
+
+        it "should return false if an index does not exist" do
+          client.has_index?(TEST_INDEX).must_equal false
         end
       end
 
