@@ -26,7 +26,7 @@ module ElasticSearch
       request = Request.new({ method: :head, index: index_name })
       begin
         execute(request).status.between?(200, 206)
-      rescue ElasticSearch::ResponseError
+      rescue ElasticSearch::NotFoundError
         return false
       end
     end

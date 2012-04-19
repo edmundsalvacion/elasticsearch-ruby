@@ -47,6 +47,16 @@ module ElasticSearch
       request = build_request({ method: :get, id: id.to_s, action: :mlt, parameters: parameters, body: doc })
     end
 
+    def mapping
+      request = build_request(method: :get, action: :mapping)
+      execute(request).body
+    end
+
+    def mapping=(mapping)
+      request = build_request(method: :put, action: :mapping, body: mapping)
+      execute(request).status.eql?(200)
+    end
+
     def delete_mapping
       request = build_request({ method: :delete })
       execute(request).status.eql?(200)

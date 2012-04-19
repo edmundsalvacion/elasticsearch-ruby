@@ -14,7 +14,7 @@ module ElasticSearch
         elsif self.body['exists'].eql?(false)
           raise ElasticSearch::ItemMissingException, "_id: #{self.body['id']} NOT FOUND"
         else
-          raise ElasticSearch::ResponseError
+          raise ElasticSearch::NotFoundError
         end
       else
         raise ElasticSearch::ResponseError, "#{self.body['status']}: #{self.body['error']}"
@@ -33,6 +33,7 @@ module ElasticSearch
   end
 
   class ResponseError < StandardError; end
-  class IndexMissingException < StandardError; end
-  class ItemMissingException < StandardError; end
+  class NotFoundError < StandardError; end
+  class IndexMissingException < NotFoundError; end
+  class ItemMissingException < NotFoundError; end
 end

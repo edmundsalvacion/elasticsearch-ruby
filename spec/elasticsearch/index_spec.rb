@@ -85,7 +85,8 @@ describe ElasticSearch::Index do
 
       describe :mapping do
         it "should return the mapping" do
-          index.mapping
+          index[:tweet].mapping = { tweet: { properties: { message: { type: 'string' } } } }
+          index.mapping[TEST_INDEX]['tweet']['properties']['message']['type'].must_equal 'string'
         end
       end
 
