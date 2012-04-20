@@ -24,10 +24,9 @@ module ElasticSearch
     end
 
     def path
-      components = [@index, @type]
-      components << @id if @id
+      components = [@index, @type, @id]
       components << "_#{@action.to_s}" if @action
-      components.compact.join("/").prepend("/")
+      "/#{components.compact.join("/")}"
     end
   end
 end
