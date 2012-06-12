@@ -14,7 +14,7 @@ module ElasticSearch
 
     def parameters
       @stringified_parameters ||= @parameters.inject({}) do |options, (key, value)|
-        options[key.to_s] = value
+        options[key.to_s] = value.to_s
         options
       end if @parameters
     end
