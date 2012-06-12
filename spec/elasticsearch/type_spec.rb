@@ -51,6 +51,13 @@ describe ElasticSearch::Type do
           results.total.must_equal 20
           results.count.must_equal 10
         end
+
+        it "should return an explanation if explain is passed as a parameter" do
+          type.put(1, { foo: 'bar' })
+          index.refresh
+          results = type.search(nil, q: 'bar', explain: true)
+          results.first.explanation.must_be_kind_of Hash
+        end
       end
     end
   end

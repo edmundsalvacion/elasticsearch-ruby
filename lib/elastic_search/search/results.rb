@@ -14,13 +14,14 @@ module ElasticSearch
     end
 
     class ResultItem < HashWithIndifferentAccess
-      attr_reader :index, :type, :id, :score
+      attr_reader :index, :type, :id, :score, :explanation
 
       def initialize(hit)
         @index = hit['_index']
         @type = hit['_type']
         @id = hit['_id']
         @score = hit['_score']
+        @explanation = hit ['_explanation']
         self.replace(hit['_source'])
       end
     end
