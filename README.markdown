@@ -1,6 +1,6 @@
-# elasticsearch-client
+# elasticsearch-ruby
 
-An elastic search ruby library with multiple transport support originall built
+An elastic search ruby library with multiple transport support originally built
 for use with [SoundTracking](http://www.soundtracking.com/).
 
 > DISCLAIMER: Quite a bit more work to be done till production ready, use at your own
@@ -23,7 +23,7 @@ index = client.create_index('twitter')
 index['tweet'].put(1, { foo: 'bar' })
 
 query = { query: { query_string: { query: 'bar' } } }
-results = index['tweet'].search
+results = index['tweet'].search(query)
 
 results.total                         # 1
 
@@ -41,7 +41,7 @@ TODO:
 
 * Better configuration support
 * Failover and retry code
-* Better unicode suppoort with Thrift
+* Better unicode support with Thrift
 * Support for Memcache Transport
 * Query Builder and block support
 * Stats, Health lookup methods
